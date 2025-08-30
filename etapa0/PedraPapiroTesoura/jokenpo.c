@@ -8,7 +8,7 @@ typedef enum {
                  // Descobrir esse erro levou alguns minutos;
 } Jogada;
 
-long long memo[50];
+long long memo[90];
 long long fibo(int n) {
     if (n == 0) return 0;
     if (n == 1) return 1;
