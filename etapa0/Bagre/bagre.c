@@ -20,16 +20,20 @@ int main() {
             scanf("%s", s);
             
             int n = strlen(s);
-            
+
+            // Procura pela palavra "ESQUERDA"
             for (int i = 0; i + 8 <= n; ++i) {
                 char *s2 = (char *) malloc(8 * sizeof(char));
                 strncpy(s2, s + i, 8);
                 if (strcmp(s2, "ESQUERDA") == 0) esq = true;
+                free(s2);
             }
-            for (int i = 0; i + 7 < n; ++i) {
+            // Procura pela palavra "DIREITA"
+            for (int i = 0; i + 7 <= n; ++i) {
                 char *s2 = (char *) malloc(7 * sizeof(char));
                 strncpy(s2, s + i, 7);
                 if (strcmp(s2, "DIREITA") == 0) dir = true;
+                free(s2);
             }
             if ((esq && dir) || (!esq && !dir) && !inv) {
                 printf("Ahn?  Acho que escolhemos o tunel errado...\n");
@@ -46,4 +50,5 @@ int main() {
     }
     
     return 0;
+
 }
