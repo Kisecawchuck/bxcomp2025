@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdbool.h>
 
 int main() {
@@ -7,19 +6,20 @@ int main() {
     scanf("%d", &t);
 
     while(t--) {
-        char s[200];
+        char s[205];
         scanf("%s", s);
 
         bool p = true;
-        for (int i = 1, n = strlen(s); i < n; ++i) {
+        for (int i = 1; s[i] != '\0'; ++i) {
             int a = s[i] - '0';
             int b = s[i - 1] - '0';
             if (a != b && a != (b + 1) % 10 && a != ((b - 1) % 10 + 10) % 10)
+                // Módulos são demônios;
                 p = false;
         }
         if (p)
-            printf("QUE BELA CONSTRUCAO\n");
+            printf("Que bela construcao! O Farao ficara muito feliz!\n");
         else
-            printf("MALDICAO\n");
+            printf("Essa parede e uma maldicao! FUJAM PARA AS COLINAS!\n");
     }
 }
