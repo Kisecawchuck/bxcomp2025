@@ -3,11 +3,11 @@
 #include <stdlib.h>
 
 int comp(const void *a, const void *b) {
-    return (*(int *) a - *(int *)b);
+    return (*(double *) a - *(double *)b);
 }
 
-int calcArea(int a, int b, int c) {
-    int s = (a + b + c)/2;
+double calcArea(int a, int b, int c) {
+    double s = (a + b + c)/2.0;
     return sqrt(s * (s - a) * (s - b) * (s - c));
 }
 
@@ -15,7 +15,7 @@ int main() {
     int n;
     scanf("%d", &n);
 
-    int *A = (int *) malloc(sizeof(int) * n);
+    double *A = (double *) malloc(sizeof(double) * n);
     int **T = (int **) malloc(sizeof(int *) * n);
     for (int i = 0; i < n; ++i)
         T[i] = (int *) malloc(sizeof(int) * 3);
@@ -31,13 +31,17 @@ int main() {
 
     qsort(A, n, sizeof(A[0]), comp);
     for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < n; ++j) {
-            int a = T[j][0];
-            int b = T[j][1];
-            int c = T[j][2];
+        for (int k = 0; k < n; ++k) {
+            int a = T[k][0];
+            if (a == -1) continue;
+            int b = T[k][1];
+            int c = T[k][2];
 
-            if (calcArea(a, b, c) == A[i])
+            double area = calcArea(a, b, c);
+            if (area == A[i]) {
                 printf("%d %d %d\n", a, b, c);
+                T[k][0] = -1;
+            }
         }
     }
     free(A);
