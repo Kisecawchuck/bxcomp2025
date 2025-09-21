@@ -3,7 +3,9 @@
 #include <stdlib.h>
 
 int comp(const void *a, const void *b) {
-    return (*(double *) a - *(double *)b);
+    if (*(double *) a > *(double *)b) return 1;
+    if (*(double *) a < *(double *)b) return -1;
+    return 0;
 }
 
 double calcArea(int a, int b, int c) {
